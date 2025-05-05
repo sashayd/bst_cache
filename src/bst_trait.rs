@@ -9,10 +9,12 @@ mod test {
     use super::*;
     use rand::Rng;
     use std::collections::HashMap;
-    use crate::bst::BST;
+    use crate::bst::BST as BST;
+    use crate::bst_vec::BST as BST_VEC;
+    use crate::bst_cache::BST as BST_CACHE;
 
     fn test<T: BSTTrait<i32, f32>>() {
-        let n: usize = 10_000;
+        let n: usize = 1_000_000;
         let mut rng = rand::rng();
         let mut bst: T = T::new();
         let mut dct: HashMap<i32, f32> = HashMap::new();
@@ -22,6 +24,8 @@ mod test {
         let more_values: Vec<f32> = (0..(n/2)).map(|_| rng.random::<f32>()).collect();
         for (k, v) in keys.iter().zip(values.iter()) {
             bst.insert(*k, *v);
+        }
+        for (k, v) in keys.iter().zip(values.iter()) {
             dct.insert(*k, *v);
         }
         for k in keys.iter().chain(more_keys.iter()) {
@@ -39,5 +43,15 @@ mod test {
     #[test]
     fn test_bst() {
         test::<BST<i32, f32>>();
+    }
+    
+    #[test]
+    fn test_bst_vec() {
+        test::<BST_VEC<i32, f32>>();
+    }
+
+    #[test]
+    fn test_bst_cache() {
+        test::<BST_CACHE<i32, f32>>();
     }
 }
