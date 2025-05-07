@@ -25,6 +25,7 @@ for key1, val1 in results.items():
     for key2, val2 in val1.items():
         plt.plot(list(range(len(val2))), val2, label=key2)
     plt.title(key1)
+    plt.xticks(list(range(4)))
     plt.xlabel('optimization level')
     plt.ylabel('ms')
     plt.legend()
