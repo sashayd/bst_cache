@@ -29,6 +29,6 @@ for key1, val1 in results.items():
     plt.xlabel('optimization level')
     plt.ylabel('ms')
     plt.legend()
-    plt.savefig(key1.replace(' ', '_')+'.pdf')
+    plt.savefig(key1.replace(' ', '_')+'.png')
     plt.clf()
 
